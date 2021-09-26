@@ -17,7 +17,7 @@ void Presentacion(){
 
 Empleados nuevoIngresoFormulario(){
   Empleados Funcionario;
-
+  // Ingreso de Datos
   printf("Ingrese su Nombre y sus 2 Apellidos:\n");
   scanf("%s %s %s", Funcionario.nombre, Funcionario.primerApellido, Funcionario.segundoApellido);
   printf("Ingrese su Run: (Solo con el guion)\n");
@@ -33,10 +33,12 @@ Empleados nuevoIngresoFormulario(){
 }
 
 void DatosFuncionarioIngresados(Empleados nuevo){
+  // Impresión por pantalla de los datos ingresados.
   printf("\n- Nombre   : %s. \n- Apellidos: %s %s.\n- RUN      : %s \n- Telefono : %lu.\n- Correo   : %s \n", nuevo.nombre, nuevo.primerApellido, nuevo.segundoApellido, nuevo.run, nuevo.telefono, nuevo.correo);
 }
 
 void ConfirmarIngresoDeDatos(int *opcion){
+  // Confirmación de datos.
   do{
     printf("\n--------------------------------------------------------------------------------------------\n");
     printf("| Los datos ingresados anteriormente estan completamente en orden o desea reingresarlos?: |\n");
@@ -75,7 +77,6 @@ void TableroResumenSemanal(Horario LunesEntrada, Horario LunesSalida, Horario Ma
   printf("-------------------------------------------------------------------------------------------------------------------\n\n");
 }
 
-
 int calcularCantMinutosLunes(Horario* Entrada, Horario* Salida){
   printf("\nA continuacion digite el horario en el que hizo entrada su turno el dia lunes en formato 24 horas: (hh:mm)\n");
   scanf("%d:%d", &(Entrada->hora), &(Entrada->minutos));
@@ -83,7 +84,9 @@ int calcularCantMinutosLunes(Horario* Entrada, Horario* Salida){
   scanf("%d:%d", &(Salida->hora), &(Salida->minutos));
 
   int TotalMinutos;
+  // Cálculo del total de minutos de acuerdo a los horarios mínimos con un descanso correspondiente al almuerzo durante la jornada de un total de 1 hora y 30 minutos.
   if(Entrada->hora > Salida->hora){
+    // Cálculo establecido para el caso de un turno en la noche.
     TotalMinutos = (24 - (Entrada->hora - Salida->hora))*60 + (Salida->minutos - Entrada->minutos);
     if(TotalMinutos >= 330){
       TotalMinutos -= 90;
@@ -103,6 +106,7 @@ int calcularCantMinutosLunes(Horario* Entrada, Horario* Salida){
     }
   }
 }
+
 int calcularCantMinutosMartes(Horario* Entrada, Horario* Salida){
   printf("A continuacion digite el horario en el que hizo entrada su turno el dia martes en formato 24 horas: (hh:mm)\n");
   scanf("%d:%d", &(Entrada->hora), &(Entrada->minutos));
@@ -130,6 +134,7 @@ int calcularCantMinutosMartes(Horario* Entrada, Horario* Salida){
     }
   }
 }
+
 int calcularCantMinutosMiercoles(Horario* Entrada, Horario* Salida){
   printf("A continuacion digite el horario en el que hizo entrada su turno el dia miercoles en formato 24 horas: (hh:mm)\n");
   scanf("%d:%d", &(Entrada->hora), &(Entrada->minutos));
@@ -157,6 +162,7 @@ int calcularCantMinutosMiercoles(Horario* Entrada, Horario* Salida){
     }
   }
 }
+
 int calcularCantMinutosJueves(Horario* Entrada, Horario* Salida){
   printf("A continuacion digite el horario en el que hizo entrada su turno el dia jueves en formato 24 horas: (hh:mm)\n");
   scanf("%d:%d", &(Entrada->hora), &(Entrada->minutos));
@@ -184,6 +190,7 @@ int calcularCantMinutosJueves(Horario* Entrada, Horario* Salida){
     }
   }
 }
+
 int calcularCantMinutosViernes(Horario* Entrada, Horario* Salida){
   printf("A continuacion digite el horario en el que hizo entrada su turno el dia viernes en formato 24 horas: (hh:mm)\n");
   scanf("%d:%d", &(Entrada->hora), &(Entrada->minutos));
@@ -211,6 +218,7 @@ int calcularCantMinutosViernes(Horario* Entrada, Horario* Salida){
     }
   }
 }
+
 int calcularCantMinutosSabado(Horario* Entrada, Horario* Salida){
   printf("A continuacion digite el horario en el que hizo entrada su turno el dia sabado en formato 24 horas: (hh:mm)\n");
   scanf("%d:%d", &(Entrada->hora), &(Entrada->minutos));
@@ -238,10 +246,12 @@ int calcularCantMinutosSabado(Horario* Entrada, Horario* Salida){
     }
   }
 }
+
 void imprimirTotalMinutos(int totalMinCalculados){
     printf("El total de los minutos es: %d\n\n", totalMinCalculados);
 }
 
+// Cálculo de la remuneración semanal con respecto a los minutos calculados previamente por día de Lunes a Sábado.
 int calcularSueldoSemanal(int cantMinutos1, int cantMinutos2, int cantMinutos3, int cantMinutos4, int cantMinutos5, int cantMinutos6){
   int sueldoSemanalFuncionario = (cantMinutos1 + cantMinutos2 + cantMinutos3 + cantMinutos4 + cantMinutos5 + cantMinutos6) * 40;
   return sueldoSemanalFuncionario;
@@ -251,6 +261,7 @@ void imprimirSueldoSemanal(int sueldoCalculado){
     printf("El sueldo por honorarios correspondientes a esta semana es de: $%d pesos.\n\n", sueldoCalculado);
 }
 
+// Resumen y evaluación final que tiene el fin de presentarle un informe completo de acuerdo a las exigencias minimas de la empresa. 
 void ResumenAGerente(Empleados Colaborador, FILE* archivo, int minutosLunes, int minutosMartes, int minutosMiercoles, int minutosJueves, int minutosViernes, int minutosSabado){
   fprintf(archivo,"-----------------------------------------------------\n");
   fprintf(archivo,"------------     RESUMEN COLABORADOR     ------------\n");
