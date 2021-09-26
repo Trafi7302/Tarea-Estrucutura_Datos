@@ -15,19 +15,6 @@ void Presentacion(){
   printf("Estimado funcionario, sea bienvenido a la interfaz de Empresas 'CLAVISTEL'.\nA continuacion, se le solicita ingresar sus datos de forma correcta:\n\n");
 }
 
-void ConfirmarIngresoDeDatos(int *opcion){
-  do{
-    printf("\n--------------------------------------------------------------------------------------------\n");
-    printf("| Los datos ingresados anteriormente estan completamente en orden o desea reingresarlos?: |\n");
-    printf("|   1. LOS DATOS ESTAN CORRECTAMENTE INGRESADOS.                                          |\n");                                      
-    printf("|   2. HAY DATOS ERRONEOS, DESEO REINGRESAR MI INFORMACION.                               |\n");                             
-    printf("--------------------------------------------------------------------------------------------\n");
-    printf("Ingrese una opcion:\n");
-    scanf("%d", opcion);
-
-  } while((*opcion < 1) || (*opcion > 2));
-}
-
 Empleados nuevoIngresoFormulario(){
   Empleados Funcionario;
 
@@ -47,6 +34,19 @@ Empleados nuevoIngresoFormulario(){
 
 void DatosFuncionarioIngresados(Empleados nuevo){
   printf("\n- Nombre   : %s. \n- Apellidos: %s %s.\n- RUN      : %s \n- Telefono : %lu.\n- Correo   : %s \n", nuevo.nombre, nuevo.primerApellido, nuevo.segundoApellido, nuevo.run, nuevo.telefono, nuevo.correo);
+}
+
+void ConfirmarIngresoDeDatos(int *opcion){
+  do{
+    printf("\n--------------------------------------------------------------------------------------------\n");
+    printf("| Los datos ingresados anteriormente estan completamente en orden o desea reingresarlos?: |\n");
+    printf("|   1. LOS DATOS ESTAN CORRECTAMENTE INGRESADOS.                                          |\n");                                      
+    printf("|   2. HAY DATOS ERRONEOS, DESEO REINGRESAR MI INFORMACION.                               |\n");                             
+    printf("--------------------------------------------------------------------------------------------\n");
+    printf("Ingrese una opcion:\n");
+    scanf("%d", opcion);
+
+  } while((*opcion < 1) || (*opcion > 2));
 }
 
 void TableroResumenSemanal(Horario LunesEntrada, Horario LunesSalida, Horario MartesEntrada, Horario MartesSalida, Horario MiercolesEntrada, Horario MiercolesSalida, Horario JuevesEntrada, Horario JuevesSalida, Horario ViernesEntrada, Horario ViernesSalida, Horario SabadoEntrada, Horario SabadoSalida){
