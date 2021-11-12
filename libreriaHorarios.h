@@ -1,3 +1,4 @@
+#include "./TDA-Lista-v2/lista.h"
 #include "./libreriaStruct.h"
 #include <stdio.h>
 

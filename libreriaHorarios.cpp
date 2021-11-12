@@ -3,6 +3,17 @@
 
 // Implementaciones
 
+/*
+* Nombre de la función: CantidadTotalFuncionarios.
+* Tipo de función: void.
+* Parámetros: "Funcionarios” de tipo int.
+* 
+* Dato de retorno: ---------------------
+* Descripción de la función: La función CantidadTotalFuncionarios() solicita al encargado/supervisor
+*                            de la empresa donde esta implementado el sistema que contiene al algoritmo,
+*                            ingresar la cantidad total de funcionarios que se desempeñaran en el recorrido
+*                            de la semana para contabilizar la cantidad de solicitudes a realizar el programa.
+*/
 void CantidadTotalFuncionarios(int* Funcionarios){
   printf("Ingresar cuantos funcionarios han estado ejerciendo en la semana:\n");
   scanf("%d", Funcionarios);

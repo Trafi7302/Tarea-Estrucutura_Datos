@@ -1,5 +1,21 @@
+/* Universidad de La Frontera
+* Departamento de Ingeniería Eléctrica
+*
+* IIE-344 ESTRUCTURA DE DATOS Y ALGORITMOS
+*
+* Tarea 2
+*
+* Autores: Alfredo Felipe Álvarez Martínez. (a.alvarez06@ufromail.cl)
+*          Daniel Isaac Trafian Millán. (d.trafian01@ufromail.cl)
+*
+* Fecha: 14/11/2021
+*
+* (Descripción general del programa)
+*/
+
 #include <stdio.h>
 #include "./libreriaHorarios.h"
+// #include "./TDA-Lista-v2/lista.h"
 
 int main(){
   // Variables estáticas "secundarias".
@@ -13,7 +29,6 @@ int main(){
   Horario EntradaJornadaJueves, SalidaJornadaJueves;
   Horario EntradaJornadaViernes, SalidaJornadaViernes;
   Horario EntradaJornadaSabado, SalidaJornadaSabado;
-  
   // Funcion que determinará el número de procesos a ejecutarse
   CantidadTotalFuncionarios(&TotalEmpleados);
 

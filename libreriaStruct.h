@@ -12,3 +12,13 @@ struct Empleados{
   char correo[50];
   int dia, mes, ano;  
 };
+/*
+struct JornadaSemanal{
+  char primerDia[6] = "Lunes";
+  char segundoDia[7] = "Martes";
+  char tercerDia[10] = "Miercoles";
+  char cuartoDia[7] = "Jueves";
+  char quintoDia[8] = "Viernes";
+  char sextoDia[7] = "Sabado";
+};
+*/
