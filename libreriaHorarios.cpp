@@ -5,19 +5,33 @@
 
 // Implementaciones
 
-/*
-* Nombre de la función: CantidadTotalFuncionarios.
-* Tipo de función: void.
-* Parámetros: "Funcionarios” de tipo int.
-* 
-* Dato de retorno: ---------------------
-* Descripción de la función: La función CantidadTotalFuncionarios() solicita al encargado/supervisor
-*                            de la empresa donde esta implementado el sistema que contiene al algoritmo,
-*                            ingresar la cantidad total de funcionarios que se desempeñaran en el recorrido
-*                            de la semana para contabilizar la cantidad de solicitudes a realizar el programa.
-*/
+void implementacionLista(int *opcion){
+  do{
+    printf("\n--------------------------------\n");
+    printf("------ CLAVISTEL EMPRESAS ------\n");
+    printf("--------------------------------\n");
+    printf("Ingresar que accion se desea realizar:\n");
+    printf("\n*  1. Nueva Lista (Ingresar Funcionarios) *");
+    printf("\n*  2. Revisar Lista                       *");
+    printf("\n*  3. CANCELAR OPERACION                  *\n");
+    scanf("%d", opcion);
+
+  } while((*opcion < 1) || (*opcion > 3));
+}
+
 void CantidadTotalFuncionarios(int* Funcionarios){
-  printf("Ingresar cuantos funcionarios han estado ejerciendo en la semana:\n");
+  /*
+  * Nombre de la función: CantidadTotalFuncionarios.
+  * Tipo de función: void.
+  * Parámetros: "Funcionarios” de tipo int.
+  * 
+  * Dato de retorno: ---------------------
+  * Descripción de la función: La función CantidadTotalFuncionarios() solicita al encargado/supervisor
+  *                            de la empresa donde esta implementado el sistema que contiene al algoritmo,
+  *                            ingresar la cantidad total de funcionarios que se desempeñaran en el recorrido
+  *                            de la semana para contabilizar la cantidad de solicitudes a realizar el programa.
+  */
+  printf("\nIngresar cuantos funcionarios han estado ejerciendo en la semana:\n");
   scanf("%d", Funcionarios);
 }
 
@@ -281,11 +295,37 @@ void ResumenAGerente(Lista lista, FILE* archivo, int minutosLunes, int minutosMa
   fprintf(archivo,"  Sabado   |       %d             $%d     \n", minutosSabado, minutosSabado*40);
   fprintf(archivo,"-----------------------------------------------\n");
   fprintf(archivo,"  Total    |      %d             $%d pesos.  \n\n", (minutosLunes + minutosMartes + minutosMiercoles + minutosJueves + minutosViernes + minutosSabado), (minutosLunes + minutosMartes + minutosMiercoles + minutosJueves + minutosViernes + minutosSabado)*40);
-  fprintf(archivo,"   ***** LOS MINUTOS MINIMOS SEMANALES CON LOS QUE DEBE CUMPLIR UN COLABORADOR SON 2400 min. ---> 40 hrs. *****\n      *************       POR LO TANTO, LA REMUNERACION MINIMA CORRESPONDE A $96.000 pesos       *************\n");
+  fprintf(archivo,"   ***** LOS MINUTOS MINIMOS SEMANALES CON LOS QUE DEBE CUMPLIR UN COLABORADOR SON 2400 min. ---> 40 hrs. *****\n     ************       POR LO TANTO, LA REMUNERACION MINIMA CORRESPONDE A $96.000 pesos      ************\n");
   if((minutosLunes + minutosMartes + minutosMiercoles + minutosJueves + minutosViernes + minutosSabado) < 2400){
-    fprintf(archivo,"------------ El funcionario no ha cumplido durante esta semana con el minimo de horas solicitadas!!! ------------\n\n");
+    fprintf(archivo,"---------- El funcionario no ha cumplido durante esta semana con el minimo de horas solicitadas!!! ----------\n\n");
   }
   if((minutosLunes + minutosMartes + minutosMiercoles + minutosJueves + minutosViernes + minutosSabado) >= 2400){
-    fprintf(archivo,"+++++++++++++  El colaborador ha cumplido correctamente con el horario minimo durante esta semana!!!  ++++++++++++++\n\n");
+    fprintf(archivo,"++++++++++++  El colaborador ha cumplido correctamente con el horario minimo durante esta semana!!!  +++++++++++++\n\n");
   }
+}
+
+void opcionesManejoDLista(Lista &lista, int *opcion, int *numeroFuncionario){
+  
+  do{
+    printf("\nQue operacion se realizara?\nIndique la opcion:\n");
+    printf("\n  1. Eliminar funcionario de la lista.");
+    printf("\n  2. Imprimir lista.");
+    printf("\n  3. CANCELAR.\n");  
+    scanf("%d", opcion);
+
+    if(*opcion == 1){
+      if(vacia(lista)){
+        imprime(lista);
+      } else{
+        imprime(lista);
+        printf("Ingrese el numero del funcionario correspondiente que desea eliminar:\n");
+        scanf("%d", numeroFuncionario);
+        suprime(*numeroFuncionario, lista);
+
+      }
+    } else if(*opcion == 2){
+      imprime(lista);
+    }
+  } while((*opcion < 1) || (*opcion > 3));
+  
 }

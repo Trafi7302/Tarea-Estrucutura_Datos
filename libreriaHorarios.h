@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 // Prototipos
+void implementacionLista(int *opcion);
 void CantidadTotalFuncionarios(int* Funcionarios);
 
 void Presentacion();
@@ -24,3 +25,5 @@ int calcularSueldoSemanal(int cantMinutos1, int cantMinutos2, int cantMinutos3, 
 void imprimirSueldoSemanal(int sueldoCalculado);
 
 void ResumenAGerente(Lista lista, FILE* archivo, int minutosLunes, int minutosMartes, int minutosMiercoles, int minutosJueves, int minutosViernes, int minutosSabado);
+
+void opcionesManejoDLista(Lista &lista, int *opcion, int *numeroFuncionario);

@@ -44,7 +44,7 @@ void inserta(tipoDato x, int p, Lista &lista){
 
 void imprime(Lista lista){
 	
-	printf("- Funcionarios Registrados:\n");
+	printf("\n- Funcionarios Registrados:\n");
 	if(vacia(lista)){
 		printf("------- NO SE PRESENTAN REGISTROS. -------\n");
 	} else{

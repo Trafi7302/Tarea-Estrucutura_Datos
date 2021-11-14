@@ -8,10 +8,7 @@ struct trabajador{
   char correo[50];
   long telefono;
   char run[13];
-  int edad;
-	int dia, mes, anho;
-	int horasTrabajadas;
-	bool tipoJornada;  
+	int dia, mes, anho;	 
 };
 
 #define tipoDato trabajador
