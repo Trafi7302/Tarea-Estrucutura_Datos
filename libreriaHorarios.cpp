@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include "./TDA-Lista-v2/lista.h"
 #include "./libreriaHorarios.h"
 
 // Implementaciones
@@ -26,26 +28,27 @@ void Presentacion(){
   printf("Estimado funcionario, sea bienvenido a la interfaz de Empresas 'CLAVISTEL'.\nA continuacion, se le solicita ingresar sus datos de forma correcta:\n\n");
 }
 
-Empleados nuevoIngresoFormulario(){
-  Empleados Funcionario;
+void nuevoIngresoTrabajador(Lista &lista){
+  trabajador nuevoTrabajador;
   // Ingreso de Datos
   printf("Ingrese su Nombre y sus 2 Apellidos:\n");
-  scanf("%s %s %s", Funcionario.nombre, Funcionario.primerApellido, Funcionario.segundoApellido);
+  scanf("%s %s %s", nuevoTrabajador.nombre, nuevoTrabajador.primerApellido, nuevoTrabajador.segundoApellido);
   printf("Ingrese su Run: (Solo con el guion)\n");
-  scanf("%s", Funcionario.run);
+  scanf("%s", nuevoTrabajador.run);
   printf("Ingrese su fecha de nacimiento de la forma (dd/mm/aaaa):\n");
-  scanf("%i/%i/%i", &(Funcionario.dia), &(Funcionario.mes), &(Funcionario.ano));
+  scanf("%i/%i/%i", &(nuevoTrabajador.dia), &(nuevoTrabajador.mes), &(nuevoTrabajador.anho));
   printf("Ingrese su num. de telefono:\n");
-  scanf("%lu", &(Funcionario.telefono));
+  scanf("%lu", &(nuevoTrabajador.telefono));
   printf("Ingrese su correo electronico:\n");
-  scanf("%s", Funcionario.correo);
+  scanf("%s", nuevoTrabajador.correo);
 
-  return Funcionario;
+  inserta(nuevoTrabajador, fin(lista), lista);
 }
 
-void DatosFuncionarioIngresados(Empleados nuevo){
+void DatosTrabajadorIngresado(Lista lista){
+  tipoDato x = recupera(anterior(fin(lista), lista), lista);
   // Impresión por pantalla de los datos ingresados.
-  printf("\n- Nombre   : %s. \n- Apellidos: %s %s.\n- RUN      : %s \n- Telefono : %lu.\n- Correo   : %s \n", nuevo.nombre, nuevo.primerApellido, nuevo.segundoApellido, nuevo.run, nuevo.telefono, nuevo.correo);
+  printf("\n- Nombre   : %s. \n- Apellidos: %s %s.\n- RUN      : %s \n- Telefono : %lu.\n- Correo   : %s \n", x.nombre, x.primerApellido, x.segundoApellido, x.run, x.telefono, x.correo);
 }
 
 void ConfirmarIngresoDeDatos(int *opcion){
@@ -63,23 +66,6 @@ void ConfirmarIngresoDeDatos(int *opcion){
 }
 
 void TableroResumenSemanal(Horario LunesEntrada, Horario LunesSalida, Horario MartesEntrada, Horario MartesSalida, Horario MiercolesEntrada, Horario MiercolesSalida, Horario JuevesEntrada, Horario JuevesSalida, Horario ViernesEntrada, Horario ViernesSalida, Horario SabadoEntrada, Horario SabadoSalida){
-  // Ejemplo Tabla-Resumen 1 
-/*
-  printf("\n    Dia    | Hora de Ingreso  | Hora de Salida \n");
-  printf("-----------------------------------------------\n");
-  printf("  Lunes    |       %d:%d               %d:%d     \n", LunesEntrada.hora, LunesEntrada.minutos, LunesSalida.hora, LunesSalida.minutos);
-  printf("-----------------------------------------------\n");
-  printf("  Martes   |       %d:%d               %d:%d     \n", MartesEntrada.hora, MartesEntrada.minutos, MartesSalida.hora, MartesSalida.minutos);
-  printf("-----------------------------------------------\n");
-  printf(" Miercoles |       %d:%d               %d:%d     \n", MiercolesEntrada.hora, MiercolesEntrada.minutos, MiercolesSalida.hora, MiercolesSalida.minutos);
-  printf("-----------------------------------------------\n");
-  printf("  Jueves   |       %d:%d               %d:%d     \n", JuevesEntrada.hora, JuevesEntrada.minutos, JuevesSalida.hora, JuevesSalida.minutos);
-  printf("-----------------------------------------------\n");
-  printf("  Viernes  |       %d:%d               %d:%d     \n", ViernesEntrada.hora, ViernesEntrada.minutos, ViernesSalida.hora, ViernesSalida.minutos);
-  printf("-----------------------------------------------\n");
-  printf("  Sabado   |       %d:%d               %d:%d    \n\n", SabadoEntrada.hora, SabadoEntrada.minutos, SabadoSalida.hora, SabadoSalida.minutos);
-*/
-  // Ejemplo Tabla-Resumen 2
   printf("\n                 |   Lunes    |   Martes    |     Miercoles    |     Jueves     |     Viernes     |     Sabado  \n");
   printf("-------------------------------------------------------------------------------------------------------------------\n");
   printf(" Hora de Ingreso |   %d:%d           %d:%d            %d:%d               %d:%d              %d:%d               %d:%d   \n", LunesEntrada.hora, LunesEntrada.minutos, MartesEntrada.hora, MartesEntrada.minutos, MiercolesEntrada.hora, MiercolesEntrada.minutos, JuevesEntrada.hora, JuevesEntrada.minutos, ViernesEntrada.hora, ViernesEntrada.minutos, SabadoEntrada.hora, SabadoEntrada.minutos);
@@ -273,11 +259,13 @@ void imprimirSueldoSemanal(int sueldoCalculado){
 }
 
 // Resumen y evaluación final que tiene el fin de presentarle un informe completo de acuerdo a las exigencias minimas de la empresa. 
-void ResumenAGerente(Empleados Colaborador, FILE* archivo, int minutosLunes, int minutosMartes, int minutosMiercoles, int minutosJueves, int minutosViernes, int minutosSabado){
+void ResumenAGerente(Lista lista, FILE* archivo, int minutosLunes, int minutosMartes, int minutosMiercoles, int minutosJueves, int minutosViernes, int minutosSabado){
+  tipoDato x = recupera(anterior(fin(lista), lista), lista);
+
   fprintf(archivo,"-----------------------------------------------------\n");
   fprintf(archivo,"------------     RESUMEN COLABORADOR     ------------\n");
   fprintf(archivo,"-----------------------------------------------------\n");
-  fprintf(archivo,"Nombre Completo: %s %s %s.        RUN: %s          Telefono: %lu\nCorreo: %s                 Fecha nacimiento: %d del %d del año %d\n\n", Colaborador.nombre, Colaborador.primerApellido, Colaborador.segundoApellido, Colaborador.run, Colaborador.telefono, Colaborador.correo, Colaborador.dia, Colaborador.mes, Colaborador.ano);
+  fprintf(archivo,"Nombre Completo: %s %s %s.        RUN: %s          Telefono: %lu\nCorreo: %s                 Fecha nacimiento: %d del %d del año %d\n\n", x.nombre, x.primerApellido, x.segundoApellido, x.run, x.telefono, x.correo, x.dia, x.mes, x.anho);
   fprintf(archivo,"\n    Dia    | Total de Minutos  |   Monto \n");
   fprintf(archivo,"-----------------------------------------------\n");
   fprintf(archivo,"  Lunes    |       %d             $%d     \n", minutosLunes, minutosLunes *40);
@@ -293,11 +281,11 @@ void ResumenAGerente(Empleados Colaborador, FILE* archivo, int minutosLunes, int
   fprintf(archivo,"  Sabado   |       %d             $%d     \n", minutosSabado, minutosSabado*40);
   fprintf(archivo,"-----------------------------------------------\n");
   fprintf(archivo,"  Total    |      %d             $%d pesos.  \n\n", (minutosLunes + minutosMartes + minutosMiercoles + minutosJueves + minutosViernes + minutosSabado), (minutosLunes + minutosMartes + minutosMiercoles + minutosJueves + minutosViernes + minutosSabado)*40);
-  fprintf(archivo,"     ***** LOS MINUTOS MINIMOS SEMANALES CON LOS QUE DEBE CUMPLIR UN COLABORADOR SON 2400 min. ---> 40 hrs. *****\n       *************       POR LO TANTO, LA REMUNERACION MINIMA CORRESPONDE A $96.000 pesos       *************\n");
+  fprintf(archivo,"   ***** LOS MINUTOS MINIMOS SEMANALES CON LOS QUE DEBE CUMPLIR UN COLABORADOR SON 2400 min. ---> 40 hrs. *****\n      *************       POR LO TANTO, LA REMUNERACION MINIMA CORRESPONDE A $96.000 pesos       *************\n");
   if((minutosLunes + minutosMartes + minutosMiercoles + minutosJueves + minutosViernes + minutosSabado) < 2400){
-    fprintf(archivo,"------------- El funcionario no ha cumplido durante esta semana con el minimo de horas solicitadas!!! -------------\n\n");
+    fprintf(archivo,"------------ El funcionario no ha cumplido durante esta semana con el minimo de horas solicitadas!!! ------------\n\n");
   }
   if((minutosLunes + minutosMartes + minutosMiercoles + minutosJueves + minutosViernes + minutosSabado) >= 2400){
-    fprintf(archivo,"++++++++++++++  El colaborador ha cumplido correctamente con el horario minimo durante esta semana!!!  +++++++++++++++\n\n");
+    fprintf(archivo,"+++++++++++++  El colaborador ha cumplido correctamente con el horario minimo durante esta semana!!!  ++++++++++++++\n\n");
   }
 }

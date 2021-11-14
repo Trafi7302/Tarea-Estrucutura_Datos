@@ -1,7 +1,20 @@
 #ifndef LISTA_STRUCT_H
 #define LISTA_STRUCT_H
 
-#define tipoDato int
+struct trabajador{
+	char nombre[15];
+  char primerApellido[20];
+  char segundoApellido[20];
+  char correo[50];
+  long telefono;
+  char run[13];
+  int edad;
+	int dia, mes, anho;
+	int horasTrabajadas;
+	bool tipoJornada;  
+};
+
+#define tipoDato trabajador
 /* Estructuras*/
 struct nodo{
 	tipoDato dato;

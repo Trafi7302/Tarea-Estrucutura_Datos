@@ -10,7 +10,7 @@ struct Empleados{
   char run[13];
   long telefono;
   char correo[50];
-  int dia, mes, ano;  
+  int dia, mes, anho;  
 };
 /*
 struct JornadaSemanal{

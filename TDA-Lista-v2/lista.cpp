@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<string.h>
 #include "lista.h"
 
 bool vacia(Lista lista){
@@ -42,11 +43,18 @@ void inserta(tipoDato x, int p, Lista &lista){
 }
 
 void imprime(Lista lista){
-	for(int i=primero(lista);i<fin(lista);i=siguiente(i,lista)){
-		tipoDato x = recupera(i,lista);
-		printf("[%d,%d]->",i,x);
+	
+	printf("- Funcionarios Registrados:\n");
+	if(vacia(lista)){
+		printf("------- NO SE PRESENTAN REGISTROS. -------\n");
+	} else{
+		for(int i=primero(lista);i<fin(lista);i=siguiente(i,lista)){
+			tipoDato x = recupera(i,lista);
+			printf("[%d, %s %s %s]\n", i, x.nombre, x.primerApellido, x.segundoApellido);
+		}
 	}
 	printf("\n");
+	
 }
 
 void anula(Lista &lista){
@@ -56,7 +64,7 @@ void anula(Lista &lista){
 
 int localiza(tipoDato x, Lista lista){
 	for(int i=primero(lista);i<fin(lista);i=siguiente(i,lista))
-		if(recupera(i,lista)==x)
+		if((strcmp(recupera(i,lista).nombre, x.nombre) == 0) && (strcmp(recupera(i,lista).primerApellido, x.primerApellido) == 0) && (strcmp(recupera(i,lista).segundoApellido, x.segundoApellido) == 0))
 			return i;
 	return fin(lista);
 }

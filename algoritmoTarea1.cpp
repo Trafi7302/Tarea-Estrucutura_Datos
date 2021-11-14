@@ -14,8 +14,9 @@
 */
 
 #include <stdio.h>
-#include "./libreriaHorarios.h"
-// #include "./TDA-Lista-v2/lista.h"
+#include<string.h>
+#include "TDA-Lista-v2/lista.h"
+#include "libreriaHorarios.h"
 
 int main(){
   // Variables estáticas "secundarias".
@@ -31,6 +32,7 @@ int main(){
   Horario EntradaJornadaSabado, SalidaJornadaSabado;
   // Funcion que determinará el número de procesos a ejecutarse
   CantidadTotalFuncionarios(&TotalEmpleados);
+  Lista lista;
 
   // Se crea el archivo que contendrá los datos y el resumen.
   FILE* archivoResumen = fopen("Resumen_Colaborador.txt", "a+");
@@ -40,8 +42,8 @@ int main(){
     // Funcion que da la bienvenida al colaborador, a la interfaz interactiva.
     Presentacion();
     // Variable de tipo Empleados que almacena los datos del funcionario que ha sido ingresado.
-    Empleados Funcionario = nuevoIngresoFormulario();
-    DatosFuncionarioIngresados(Funcionario);
+    nuevoIngresoTrabajador(lista);
+    DatosTrabajadorIngresado(lista);
     // Corroboración del ingreso de datos para reingresar sus datos en caso de algún error.
     ConfirmarIngresoDeDatos(&opcion);
     if(opcion == 1){
@@ -85,9 +87,10 @@ int main(){
 
    // Completación de archivo-resumen, con los datos y evaluaciones de acuerdo a las exigencias minimas de la empresa.
     FILE* archivoResumen = fopen("Resumen_Colaborador.txt", "a+");
-    ResumenAGerente(Funcionario, archivoResumen, TotalMinutosJornada1, TotalMinutosJornada2, TotalMinutosJornada3, TotalMinutosJornada4, TotalMinutosJornada5, TotalMinutosJornada6);
+    ResumenAGerente(lista, archivoResumen, TotalMinutosJornada1, TotalMinutosJornada2, TotalMinutosJornada3, TotalMinutosJornada4, TotalMinutosJornada5, TotalMinutosJornada6);
   }
   // Se da fin a la modificación del archivo y se termina la ejecución.
   fclose(archivoResumen);
+  imprime(lista);
   return 0;
 }

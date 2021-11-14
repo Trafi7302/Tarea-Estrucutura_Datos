@@ -1,6 +1,9 @@
 all:
-	g++ -c libreriaHorarios.cpp
-	g++ -c algoritmoTarea1.cpp
-	g++ -o ejec libreriaHorarios.o algoritmoTarea1.o
+	g++ libreriaHorarios.cpp -c
+	g++ algoritmoTarea1.cpp -c
+	g++ ./TDA-Lista-v2/lista.cpp -c
+	g++ -o ejec libreriaHorarios.o algoritmoTarea1.o lista.o
+	rm *.o
 	./ejec
+
 	
